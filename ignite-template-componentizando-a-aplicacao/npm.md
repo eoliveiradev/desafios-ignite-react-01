@@ -1,0 +1,3 @@
+npm i axios json-server react react-dom react-feather react-icons
+
+npm i @babel/cli @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript @pmmmwh/react-refresh-webpack-plugin @types/react-dom babel-loader babel-preset-react-app cross-env css-loader file-loader html-webpack-plugin identity-obj-proxy node-sass react-app-polyfill react-refresh sass-loader style-loader ts-node typescript webpack webpack-cli webpack-dev-server -D
