@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
-import { Product, Stock } from '../@types';
+import { CartItemsAmount, Product, Stock } from '../@types';
 
 interface CartProviderProps {
   children: ReactNode;
@@ -14,6 +14,7 @@ interface UpdateProductAmount {
 
 interface CartContextData {
   cart: Product[];
+  cartItemsAmount: CartItemsAmount;
   addProduct: (productId: number) => Promise<void>;
   removeProduct: (productId: number) => void;
   updateProductAmount: ({ productId, amount }: UpdateProductAmount) => void;
@@ -67,9 +68,16 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const removeProduct = (productId: number) => {
     try {
-      // TODO
-    } catch {
-      // TODO
+      const productIndex = cart.findIndex(product => product.id === productId);
+
+      if (productIndex < 0) {
+        throw new Error('Erro na remoção do produto');
+      }
+
+      setCart(state => state.filter(product => product.id !== productId));
+
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -78,15 +86,50 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     amount,
   }: UpdateProductAmount) => {
     try {
-      // TODO
-    } catch {
-      // TODO
+      const amountInStock = await api.get(`stock/${productId}`)
+        .then(response => response.data.amount)
+        .catch(error => { throw new Error('Erro na alteração de quantidade do produto') });
+
+      const productInCart = cart.find(product => product.id === productId);
+
+      if (!productInCart) {
+        throw new Error('Erro na alteração de quantidade do produto');
+      }
+
+      const isAmountInStock = amountInStock >= amount;
+
+      if (!isAmountInStock) {
+        throw new Error('Quantidade solicitada fora de estoque');
+      }
+
+      setCart(state => state.map(product => {
+        return product.id === productId ? { ...product, amount } : product
+      }));
+
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
+  const cartItemsAmount = cart.reduce((sumAmount, product) => {
+    return { ...sumAmount, [product.id]: product.amount };
+  }, {} as CartItemsAmount)
+
+  useEffect(() => {
+    localStorage.setItem('@RocketShoes:cart', JSON.stringify(cart));
+  }, [cart])
+
+  const Context: CartContextData = {
+    cart,
+    addProduct,
+    removeProduct,
+    updateProductAmount,
+    cartItemsAmount
+  }
+
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, updateProductAmount }}
+      value={Context}
     >
       {children}
     </CartContext.Provider>
