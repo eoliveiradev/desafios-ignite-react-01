@@ -10,11 +10,7 @@ import { ProductCard } from '../../components/ProductCard';
 
 const Home = (): JSX.Element => {
   const [products, setProducts] = useState<ProductFormatted[]>([]);
-  // const { addProduct, cart } = useCart();
-
-  // const cartItemsAmount = cart.reduce((sumAmount, product) => {
-  //   // TODO
-  // }, {} as CartItemsAmount)
+  const { addProduct } = useCart();
 
   useEffect(() => {
     async function loadProducts() {
@@ -30,7 +26,7 @@ const Home = (): JSX.Element => {
   useEffect(() => { console.log(products) }, [products])
 
   function handleAddProduct(id: number) {
-    // TODO
+    addProduct(id);
   }
 
   return (

@@ -1,5 +1,7 @@
 import { MdAddShoppingCart } from "react-icons/md";
 import { ProductFormatted } from "../../@types";
+import { useCart } from "../../hooks/useCart";
+import { formatPrice } from "../../util/format";
 
 interface ProductCardProps {
   product: ProductFormatted;
@@ -7,13 +9,16 @@ interface ProductCardProps {
 }
 
 export const ProductCard = (props: ProductCardProps) => {
-  const { product: { id, image, priceFormatted, title }, onAddProduct } = props
+  const { product: { id, image, price, title }, onAddProduct } = props
+
+  const { cartItemsAmount } = useCart()
 
   return (
     <li>
-      <img src={image} alt="Tênis de Caminhada Leve Confortável" />
+      <img src={image} alt={title} />
       <strong>{title}</strong>
-      <span>{priceFormatted}</span>
+
+      <span>{formatPrice(price)}</span>
       <button
         type="button"
         data-testid="add-product-button"
@@ -21,7 +26,7 @@ export const ProductCard = (props: ProductCardProps) => {
       >
         <div data-testid="cart-product-quantity">
           <MdAddShoppingCart size={16} color="#FFF" />
-          {/* {cartItemsAmount[product.id] || 0} */} 2
+          {cartItemsAmount[id] || 0}
         </div>
 
         <span>ADICIONAR AO CARRINHO</span>
