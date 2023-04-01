@@ -23,15 +23,13 @@ const Home = (): JSX.Element => {
     loadProducts();
   }, []);
 
-  useEffect(() => { console.log(products) }, [products])
-
   function handleAddProduct(id: number) {
     addProduct(id);
   }
 
   return (
     <ProductList>
-      {products.map(product => (<ProductCard product={product} onAddProduct={handleAddProduct} />))}
+      {products.map(product => (<ProductCard key={product.id} product={product} onAddProduct={handleAddProduct} />))}
     </ProductList>
   );
 };
