@@ -54,7 +54,7 @@ export const Food = (props: FoodProps) => {
           <button
             type="button"
             className="icon"
-            onClick={() => handleDelete(food.id)}
+            onClick={() => handleDelete(food.id as number)}
             data-testid={`remove-food-${food.id}`}
           >
             <FiTrash size={20} />
