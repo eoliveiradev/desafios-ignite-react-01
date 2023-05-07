@@ -6,7 +6,7 @@ import { Header } from '../../components/Header';
 import { api } from '../../services/api';
 import { Food } from '../../components/Food';
 import { ModalAddFood } from '../../components/ModalAddFood';
-import ModalEditFood from '../../components/ModalEditFood';
+import { ModalEditFood } from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
 
 class Dashboard extends Component {
@@ -101,9 +101,13 @@ class Dashboard extends Component {
         />
         <ModalEditFood
           isOpen={editModalOpen}
-          setIsOpen={this.toggleEditModal}
-          editingFood={editingFood}
+          toggleIsOpen={this.toggleEditModal}
+          food={editingFood}
           handleUpdateFood={this.handleUpdateFood}
+        // isOpen={editModalOpen}
+        // setIsOpen={this.toggleEditModal}
+        // editingFood={editingFood}
+        // handleUpdateFood={this.handleUpdateFood}
         />
 
         <FoodsContainer data-testid="foods-list">
