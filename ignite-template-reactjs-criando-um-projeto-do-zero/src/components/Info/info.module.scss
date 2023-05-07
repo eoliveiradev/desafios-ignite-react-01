@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm)
+}
+
+.icon {
+  color: var(--info);
+  font-size: 1.25rem;
+}
