@@ -1,44 +1,64 @@
 import { GetStaticProps } from 'next';
-
-import { getPrismicClient } from '../services/prismic';
-
-import commonStyles from '../styles/common.module.scss';
-import styles from './home.module.scss';
+import { useState } from 'react';
 import { Post } from '../components/Post';
-
-interface Post {
-  uid?: string;
-  first_publication_date: string | null;
-  data: {
-    title: string;
-    subtitle: string;
-    author: string;
-  };
-}
-
-interface PostPagination {
-  next_page: string;
-  results: Post[];
-}
+import { IPost } from '../@types/interfaces';
+import { getPosts } from '../services/posts';
+import styles from './home.module.scss';
 
 interface HomeProps {
-  postsPagination: PostPagination;
+  posts: IPost[];
 }
 
-export default function Home(): JSX.Element {
+export default function Home(props: HomeProps): JSX.Element {
+  const { posts: initialPosts } = props;
+
+  const [posts, setPosts] = useState<IPost[]>(initialPosts);
+
+  const loadMorePosts = async (): Promise<void> => {
+    const after = posts[posts.length - 1].id;
+
+    try {
+      const newPosts = await getPosts({ after, limit: 1 });
+
+      setPosts((state) => [...state, ...newPosts]);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <Post
-      date="12/12/2012"
-      title="Post title"
-      description="Post description aa afj f skdjf  fkldsjflsdjf  fjasdlkfjsdklf  fjsdkalfjsadk."
-      user="Post user"
-    />
+    <div className={styles.container}>
+      {
+        posts.map((post) => (
+          <Post
+            key={post.uid}
+            uid={post.uid}
+            date={post.first_publication_date}
+            title={post.data.title}
+            description={post.data.subtitle}
+            user={post.data.author}
+          />
+        ))
+      }
+      <footer>
+        <button
+          className={styles.loadmore}
+          type="button"
+          onClick={loadMorePosts}
+        >
+          Carregar mais posts
+        </button>
+      </footer>
+    </div>
   );
 }
 
-// export const getStaticProps = async () => {
-//   // const prismic = getPrismicClient({});
-//   // const postsResponse = await prismic.getByType(TODO);
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const posts = await getPosts({ limit: 1 });
 
-//   // TODO
-// };
+  return {
+    props: {
+      posts: posts as unknown as IPost[],
+    },
+  };
+};
