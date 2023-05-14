@@ -1,45 +1,64 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-
-import { getPrismicClient } from '../../services/prismic';
-
-import commonStyles from '../../styles/common.module.scss';
+import { FaUser, FaCalendar, FaClock } from 'react-icons/fa';
+import { getPostByUID } from '../../services/posts';
+import { IPost } from '../../@types/interfaces';
 import styles from './post.module.scss';
-
-interface Post {
-  first_publication_date: string | null;
-  data: {
-    title: string;
-    banner: {
-      url: string;
-    };
-    author: string;
-    content: {
-      heading: string;
-      body: {
-        text: string;
-      }[];
-    }[];
-  };
-}
+import { Info } from '../../components/Info';
 
 interface PostProps {
-  post: Post;
+  post: IPost;
 }
 
-// export default function Post() {
-//   // TODO
-// }
+export default function Post(props: PostProps): JSX.Element {
+  const {
+    post: {
+      data: {
+        banner, title, author, content,
+      }, first_publication_date,
+    },
+  } = props;
 
-// export const getStaticPaths = async () => {
-//   const prismic = getPrismicClient({});
-//   const posts = await prismic.getByType(TODO);
+  return (
+    <div className={styles.container}>
+      {
+        banner.url ? (
+          <img src={banner.url} alt={banner.alt} />
+        ) : <div className={styles['image-fallback']} />
+      }
 
-//   // TODO
-// };
+      <div className={styles.content}>
+        <header>
+          <h1>{title}</h1>
+          <div className={styles.content__details}>
+            <Info icon={FaCalendar} title={first_publication_date} />
+            <Info icon={FaUser} title={author} />
+            <Info icon={FaClock} title="4 min" />
+          </div>
+        </header>
 
-// export const getStaticProps = async ({params }) => {
-//   const prismic = getPrismicClient({});
-//   const response = await prismic.getByUID(TODO);
+        {
+          content.map(({ heading, body }) => (
+            <div className={styles.post}>
+              <h2>{heading}</h2>
+              {
+                body.map(({ text }) => <p>{text}</p>)
+              }
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  );
+}
 
-//   // TODO
-// };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const post = await getPostByUID({ uid: params.slug as string });
+
+    return { props: { post } };
+  } catch (e) {
+    return { props: {}, redirect: { destination: '/500', permanent: false } };
+  }
+};
+
+export const getStaticPaths: GetStaticPaths = async () => ({ paths: [], fallback: 'blocking' });

@@ -1,1 +1,61 @@
-// TODO
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 80px;
+
+  img {
+    width: 100vw;
+    max-width: 1440px;
+    height: 400px;
+  }
+}
+
+.image-fallback {
+  width: 100vw;
+  max-width: 1440px;
+  height: 400px;
+  background: #131313;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  width: 100%;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    h1 {
+      font-size: 48px;
+      color: var(--heading);
+    }
+  }
+}
+
+.content__details {
+  display: flex;
+  gap: var(--gap-lg);
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  h2 {
+    color: var(--heading);
+    font-size: var(--font-size-lg);
+  }
+
+  p {
+    color: var(--body);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+  }
+}
