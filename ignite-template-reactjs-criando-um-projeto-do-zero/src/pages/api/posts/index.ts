@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { prismicClient } from '../../services/prismic';
+import { prismicClient } from '../../../services/prismic';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   switch (req.method) {

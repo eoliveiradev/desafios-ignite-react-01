@@ -12,3 +12,13 @@ export const getPosts = async (
       throw new Error('Failed to load posts');
     });
 };
+
+export const getPostByUID = async (params: { uid: string }): Promise<IPost> => {
+  const { uid } = params;
+
+  return api.get(`/posts/${uid}`)
+    .then((response) => {
+      if (response.status === 200) return response.data;
+      throw new Error('Failed to load post');
+    });
+};
