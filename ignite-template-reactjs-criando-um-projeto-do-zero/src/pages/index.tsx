@@ -18,7 +18,7 @@ export default function Home(props: HomeProps): JSX.Element {
     const after = posts[posts.length - 1].id;
 
     try {
-      const newPosts = await getPosts({ after, limit: 1 });
+      const newPosts = await getPosts({ after, limit: 5 });
 
       setPosts((state) => [...state, ...newPosts]);
     } catch (e) {
@@ -54,11 +54,21 @@ export default function Home(props: HomeProps): JSX.Element {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const posts = await getPosts({ limit: 1 });
+  try {
+    const posts = await getPosts({ limit: 5 });
 
-  return {
-    props: {
-      posts: posts as unknown as IPost[],
-    },
-  };
+    return {
+      props: {
+        posts: posts as unknown as IPost[],
+      },
+    };
+  } catch (e) {
+    return {
+      props: {},
+      redirect: {
+        destination: '/500',
+        permanent: false,
+      },
+    };
+  }
 };
