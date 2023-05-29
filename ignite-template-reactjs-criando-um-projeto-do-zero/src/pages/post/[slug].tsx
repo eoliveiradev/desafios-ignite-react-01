@@ -4,6 +4,7 @@ import { getPostByUID } from '../../services/posts';
 import { IPost } from '../../@types/interfaces';
 import styles from './post.module.scss';
 import { Info } from '../../components/Info';
+import { formatDate } from '../../utils/date';
 import { getReadingTime } from '../../utils/post';
 
 interface PostProps {
@@ -31,7 +32,7 @@ export default function Post(props: PostProps): JSX.Element {
         <header>
           <h1>{title}</h1>
           <div className={styles.content__details}>
-            <Info icon={FaCalendar} title={first_publication_date} />
+            <Info icon={FaCalendar} title={formatDate(first_publication_date)} />
             <Info icon={FaUser} title={author} />
             <Info
               icon={FaClock}

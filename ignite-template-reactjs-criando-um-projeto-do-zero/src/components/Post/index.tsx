@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styles from './post.module.scss';
 import commonStyles from '../../styles/common.module.scss';
 import { Info } from '../Info';
+import { formatDate } from '../../utils/date';
 
 interface PostProps {
   uid: string;
@@ -25,7 +26,7 @@ export const Post = (props: PostProps): JSX.Element => {
           <p className={commonStyles.paragraph}>{description}</p>
           <footer>
             <Info icon={FaUser} title={user} />
-            <Info icon={FaCalendar} title={date} />
+            <Info icon={FaCalendar} title={formatDate(date)} />
           </footer>
         </div>
       </a>

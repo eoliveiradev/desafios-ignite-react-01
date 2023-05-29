@@ -65,10 +65,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   } catch (e) {
     return {
       props: {},
-      redirect: {
-        destination: '/500',
-        permanent: false,
-      },
+      notFound: true,
     };
   }
 };
