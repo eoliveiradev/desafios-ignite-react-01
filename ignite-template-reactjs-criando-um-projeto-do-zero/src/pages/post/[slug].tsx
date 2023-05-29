@@ -4,6 +4,7 @@ import { getPostByUID } from '../../services/posts';
 import { IPost } from '../../@types/interfaces';
 import styles from './post.module.scss';
 import { Info } from '../../components/Info';
+import { getReadingTime } from '../../utils/post';
 
 interface PostProps {
   post: IPost;
@@ -32,7 +33,10 @@ export default function Post(props: PostProps): JSX.Element {
           <div className={styles.content__details}>
             <Info icon={FaCalendar} title={first_publication_date} />
             <Info icon={FaUser} title={author} />
-            <Info icon={FaClock} title="4 min" />
+            <Info
+              icon={FaClock}
+              title={`${getReadingTime(content)} min`}
+            />
           </div>
         </header>
 
