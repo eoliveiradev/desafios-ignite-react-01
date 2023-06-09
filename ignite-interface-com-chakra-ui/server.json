@@ -1,0 +1,62 @@
+{
+  "continents": [
+    {
+      "id": 1,
+      "name": "Europa",
+      "image": "https://images.unsplash.com/photo-1473951574080-01fe45ec8643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1204&q=80",
+      "short_description": "O continente mais antigo.",
+      "description": "A Europa é, por convenção, um dos seis continentes do mundo. Compreendendo a península ocidental da Eurásia, a Europa geralmente divide-se da Ásia a leste pela divisória de águas dos montes Urais, o rio Ural, o mar Cáspio, o Cáucaso, e o mar Negro a sudeste",
+      "countries": {
+        "total": 50
+      },
+      "languages": {
+        "total": 50
+      },
+      "cities": {
+        "total": 50,
+        "data": [
+          {
+            "name": "Londres",
+            "image_url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "country": {
+              "name": "Reino Unido",
+              "flag_url": "data:image/png;base64,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"
+            }
+          },
+          {
+            "name": "Paris",
+            "image_url": "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "country": {
+              "name": "França",
+              "flag_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAACFCAMAAAApQEceAAAAFVBMVEX///8AJlTOESYAD0l1fJDddnzMAA+H1ew7AAAAiUlEQVR4nO3PRxEAIAADsDL9S0ZEf1ziIBmttVM7d7YiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLyaeQBbt9uqjGyZV0AAAAASUVORK5CYII="
+            }
+          },
+          {
+            "name": "Roma",
+            "image_url": "https://images.unsplash.com/photo-1531572753322-ad063cecc140?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80",
+            "country": {
+              "name": "Itália",
+              "flag_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAACFCAMAAAApQEceAAAAFVBMVEX///8AkkbOKzcAjTl1tYrdfoPMFyenlKYQAAAAiUlEQVR4nO3PRxEAIAADsDL9S0ZEf1ziIBmttVM7d7YiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLyaeQBbt9uqjGyZV0AAAAASUVORK5CYII="
+            }
+          },
+          {
+            "name": "Praga",
+            "image_url": "https://images.unsplash.com/photo-1564511287568-54483b52a35e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "country": {
+              "name": "República Tcheca",
+              "flag_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAACFCAMAAAApQEceAAAAY1BMVEX////XFBoRRX7sp6jVAAAAN3fT2+WltsrOFRu4HjCTKUZphqrk6e8zXI1cfaNNcp0eUIY/aJaQpsAAMnaEcYyCK0tFO2mrIzl8LlC6GSMnQXayIDVYOGQ4PGtjNl/BGCCWJ0DmOdvzAAADIUlEQVR4nN3aCVbbQBAEUKtBCZgkEIiFEbLw/U8ZiQmKbW2zdXe16wT6r12zPW8efmyuI+XP79qfkCdEdB1D6SB0FUPpIVT+sj8UchL7Q6GvWG/KAKHS9lDoRPLwTftrEkKnEstNofPYbcoFpCSrQ6HLWG3KCGJ1o5+AED0abMokpHyyN5RJSL98WWvKHMTcnjIH6SiPpoYyD+mbYqj0CxBbTVmGkJ3lawXSXR6NDGUNYmajX4cYORL7QMjCkdgPYqApfhADG70nhOCPxP4Q8GeWAAj2Rh8EQd5TwiBdU1CHEgopCfRIHAqBfWYJh3RNedb+6onEQKj8jTeUKEh/T0FrSiSECO30FQ1BuzzGQ8CeWRIgWM8sKRBCakoihEqUPSUVAnN5TIagbPQZIBhH4iwQomf15SsTRL8pmSD6TckGIdI9EmeE6DYlK0Rzo88LoSe1pmSG6F0ec0NIqykMEJ09hQHSRaEpPBCFyyMPpF++hJvCBRE/EvNBhJcvTohoUzghok3hhQg2hRtCL0JDYYdQ+edGIAKQ3d2tQNgh1X0hEmZIvbuTcTBDqlchBjNk/yHm4IRUb7dyDj5IvZdqBy+kehdlsEH2wgwmSPMu2Q4+iNjewQsRbwcPpN6pMLJDmlf5dnBAdoJbOSPkIHTQZYaotSMzpNFZrLJDFNuRE9K8KTPyQGr5k9U4GSDa7XBJh6icrMZJhTSi18CFpEHqLcY4ikQIRjtcEiByb1Y+iYfAtMMlFoI1jiIaIvWi658oSL2F+lV9JgbSwo2jiIKgtcMlGNIgjqMIhiC2wyUM0io8IXomCIJzshonANJo32YX4w05bLU/dTm+ENTFaognBLkdLl6Q5gN2sRriATnoPiF6Zh0C3w6XNUgNvlgNWYG0+k+InlmE1Ef4xWrIEsRIO1zmIfURf809ySykvTflmIMAPSF6ZhpSQR90JzMFQT/oTmYCAvlIspoxxFw7XC4hrb12uJxDDrCPJKs5g9hsh8spxNDJapz/ELPtcPmCHI7aX5KYfxCAvy4k5hNSWx9H4SCtgUeS1WxsnqzG2di5lS/nL1LWbgZrojOuAAAAAElFTkSuQmCC"
+            }
+          },
+          {
+            "name": "Amsterdã",
+            "image_url": "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "country": {
+              "name": "Holanda",
+              "flag_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAACFCAMAAAApQEceAAAAGFBMVEX///+uHCghRouwHyzhr7OxvdQlSo6uGiaD9yJXAAAAk0lEQVR4nO3PgQ2DAAzAsA42+P9jnphEVNkXJPNZYt4O+BcjNUZqjNQYqTFSY6TGSI2RGiM1RmqM1BipMVJjpMZIjZEaIzVGaozUGKmZe4k5l5jvEgMAAAAAAAAAwOt+S8y1xBxLGKkxUmOkxkiNkRojNUZqjNQYqTFSY6TGSI2RGiM1RmqM1BipMVJjpMZIjZGaBzgxd4kmpHW3AAAAAElFTkSuQmCC"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
