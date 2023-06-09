@@ -1,3 +1,7 @@
+export interface ContextProps {
+  children: ReactNode;
+}
+
 interface ICity {
   name: string;
   image_url: string;
