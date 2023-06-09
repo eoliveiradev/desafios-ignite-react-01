@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Text } from '@chakra-ui/react'
 
 interface HeroProps {
   image_url: string

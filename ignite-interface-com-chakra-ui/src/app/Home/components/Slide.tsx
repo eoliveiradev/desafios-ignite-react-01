@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { IContinent } from "@/@types/interfaces";
-import { Slider } from "@/components/Slider"
-import { getContinents } from "@/services/continents";
-import { Flex, Text } from "@chakra-ui/react";
-import Link from "next/link";
-import { useEffect, useState } from "react"
+import { IContinent } from '@/@types/interfaces'
+import { Slider } from '@/components/Slider'
+import { getContinents } from '@/services/continents'
+import { Flex, Text } from '@chakra-ui/react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface SlidePageProps {
   continent: IContinent
@@ -26,20 +26,16 @@ const SlidePage = (props: SlidePageProps) => {
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
       >
-        <Flex
-          direction="column"
-          alignItems="center"
-          gap="16px"
-        >
+        <Flex direction="column" alignItems="center" gap="16px">
           <Text
-            fontSize={{ base: "1.5rem", md: "3rem" }}
+            fontSize={{ base: '1.5rem', md: '3rem' }}
             fontWeight={700}
             color="#F5F8FA"
           >
             {continent.name}
           </Text>
           <Text
-            fontSize={{ base: "0.875", md: "1.5rem" }}
+            fontSize={{ base: '0.875', md: '1.5rem' }}
             fontWeight={700}
             color="#F5F8FA"
           >
@@ -72,13 +68,9 @@ export const Slide = () => {
 
   return (
     <Slider height={'450px'} width="100%">
-      {
-
-        continents.map((continent, index) => (
-          <SlidePage continent={continent} key={index} />
-        ))
-      }
+      {continents.map((continent, index) => (
+        <SlidePage continent={continent} key={index} />
+      ))}
     </Slider>
   )
 }
-

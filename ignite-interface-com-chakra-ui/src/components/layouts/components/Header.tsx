@@ -1,6 +1,6 @@
-import { Flex } from "@chakra-ui/react"
-import { BackButton } from "../../buttons/BackButton"
-import Link from "next/link"
+import { Flex } from '@chakra-ui/react'
+import { BackButton } from '../../buttons/BackButton'
+import Link from 'next/link'
 
 export const Header = () => {
   return (
@@ -18,12 +18,10 @@ export const Header = () => {
       </Flex>
       <Flex flex={1} justify="center">
         <Link href="/">
-          <img src='/Logo.svg' />
+          <img src="/Logo.svg" />
         </Link>
       </Flex>
-      <Flex flex={1}>
-
-      </Flex>
+      <Flex flex={1}></Flex>
     </Flex>
   )
 }

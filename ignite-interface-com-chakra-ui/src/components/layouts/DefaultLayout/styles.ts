@@ -1,4 +1,4 @@
-import { styled } from "@chakra-ui/react";
+import { styled } from '@chakra-ui/react'
 
 export const Container = styled('div', {
   baseStyle: {
@@ -8,8 +8,8 @@ export const Container = styled('div', {
 
     width: '100%',
 
-    padding: "0 0 40px 0"
-  }
+    padding: '0 0 40px 0',
+  },
 })
 
 export const Content = styled('div', {
@@ -17,5 +17,5 @@ export const Content = styled('div', {
     width: '100%',
     maxWidth: '1440px',
     minHeight: '100vh',
-  }
+  },
 })

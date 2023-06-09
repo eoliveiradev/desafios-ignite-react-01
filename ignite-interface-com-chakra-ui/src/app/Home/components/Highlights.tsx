@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { Image, ImageProps, Stack, Text } from "@chakra-ui/react"
-import { ReactNode } from "react";
+import { Image, ImageProps, Stack, Text } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 
 interface IHighlight {
-  title: string;
-  icon: ReactNode;
+  title: string
+  icon: ReactNode
 }
 
 const IconStyles: ImageProps = {
@@ -16,28 +16,33 @@ const IconStyles: ImageProps = {
 const items: IHighlight[] = [
   {
     title: 'vida noturna',
-    icon: <Image src="/highlights/cocktail.svg" alt="Cocktail" {...IconStyles} />
+    icon: (
+      <Image src="/highlights/cocktail.svg" alt="Cocktail" {...IconStyles} />
+    ),
   },
   {
     title: 'praia',
-    icon: <Image src="/highlights/surf.svg" alt="Beach" {...IconStyles} />
+    icon: <Image src="/highlights/surf.svg" alt="Beach" {...IconStyles} />,
   },
   {
     title: 'moderno',
-    icon: <Image src="/highlights/building.svg" alt="Building" {...IconStyles} />
+    icon: (
+      <Image src="/highlights/building.svg" alt="Building" {...IconStyles} />
+    ),
   },
   {
     title: 'clássico',
-    icon: <Image src="/highlights/museum.svg" alt="Museu" {...IconStyles} />
+    icon: <Image src="/highlights/museum.svg" alt="Museu" {...IconStyles} />,
   },
   {
     title: 'e mais...',
-    icon: <Image src="/highlights/earth.svg" alt="Planeta Terra" {...IconStyles} />
-  }
+    icon: (
+      <Image src="/highlights/earth.svg" alt="Planeta Terra" {...IconStyles} />
+    ),
+  },
 ]
 
 export const HightLights = () => {
-
   return (
     <Stack
       direction="row"
@@ -46,7 +51,7 @@ export const HightLights = () => {
       justify={{ base: 'center', md: 'space-between' }}
       wrap="wrap"
     >
-      {items.map(item => (
+      {items.map((item) => (
         <Stack
           key={item.title}
           direction="column"
@@ -62,8 +67,7 @@ export const HightLights = () => {
             {item.title}
           </Text>
         </Stack>
-      ))
-      }
-    </Stack >
+      ))}
+    </Stack>
   )
 }

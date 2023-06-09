@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from '@chakra-ui/react'
 
 export const Hero = () => {
   return (
@@ -27,7 +27,7 @@ export const Hero = () => {
         >
           5 Continentes, <br />
           infinitas possibilidades.
-        </Text >
+        </Text>
         <Text
           as="p"
           fontSize={{ base: '0.875rem', md: '1.25rem' }}

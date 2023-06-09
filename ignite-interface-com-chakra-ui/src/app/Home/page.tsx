@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import { Hero } from "@/app/Home/components/Hero"
-import { HightLights } from "./components/Highlights"
-import { Divider, Flex, Text } from "@chakra-ui/react"
-import { Slide } from "./components/Slide";
-import { PageContent, Page } from "@/components/base/page";
+import { Hero } from '@/app/Home/components/Hero'
+import { HightLights } from './components/Highlights'
+import { Divider, Text } from '@chakra-ui/react'
+import { Slide } from './components/Slide'
+import { PageContent, Page } from '@/components/base/page'
 
 const Home = () => {
   return (
@@ -17,7 +17,7 @@ const Home = () => {
 
         <Text
           as="h3"
-          fontSize={{ base: "1.25rem", md: "2.25rem" }}
+          fontSize={{ base: '1.25rem', md: '2.25rem' }}
           fontWeight={500}
           align="center"
           color="#47585B"
