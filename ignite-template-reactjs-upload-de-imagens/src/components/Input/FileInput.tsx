@@ -39,8 +39,8 @@ export interface FileInputProps {
   setLocalImageUrl: Dispatch<SetStateAction<string>>
   setError: UseFormSetError<FieldValues>
   onChange: (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => Promise<boolean | void>
+    image: HTMLInputElement['files'][0],
+  ) => void
   trigger: UseFormTrigger<FieldValues>
 }
 
@@ -60,7 +60,7 @@ const FileInputBase: ForwardRefRenderFunction<
     ...rest
   },
   ref,
-): JSX.Element => {
+  ): JSX.Element => {
     const toast = useToast()
     const [progress, setProgress] = useState(0)
     const [isSending, setIsSending] = useState(false)
@@ -74,6 +74,16 @@ const FileInputBase: ForwardRefRenderFunction<
           return
         }
 
+        const image = event.target.files[0]
+
+        onChange(image)
+
+        const isValidImage = await trigger('image')
+
+        if (!isValidImage) {
+          return;
+        }
+
         console.log('uploading')
 
         setImageUrl('')
@@ -81,12 +91,9 @@ const FileInputBase: ForwardRefRenderFunction<
         setError('image', null)
         setIsSending(true)
 
-        await onChange(event)
-        trigger('image')
-
         const formData = new FormData()
 
-        formData.append(event.target.name, event.target.files[0])
+        formData.append(event.target.name, image)
         formData.append('key', process.env.NEXT_PUBLIC_IMGBB_API_KEY)
 
         const { CancelToken } = axios
@@ -197,6 +204,9 @@ const FileInputBase: ForwardRefRenderFunction<
                   )}
 
                   <Flex
+                    as="label"
+                    htmlFor={name}
+                    cursor="pointer"
                     h="full"
                     alignItems="center"
                     justifyContent="center"
@@ -219,9 +229,8 @@ const FileInputBase: ForwardRefRenderFunction<
             onChange={handleImageUpload}
             ref={ref}
             type="file"
-            style={{
-              display: 'none',
-            }}
+            accept="image/*"
+            style={{ display: 'none' }}
             {...rest}
           />
         </FormLabel>
