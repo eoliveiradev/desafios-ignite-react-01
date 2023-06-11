@@ -1,13 +1,13 @@
 import { Box, Button, Stack, useToast } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 
-import { api } from '../../services/api'
 import { FileInput } from '../Input/FileInput'
 import { TextInput } from '../Input/TextInput'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { postImage } from '../../services/images'
 
 interface FormAddImageProps {
   closeModal: () => void
@@ -33,18 +33,49 @@ const FormAddImageSchema = z.object({
     .max(250, { message: 'Máximo de 250 caracteres' })
 })
 
-type FormAddImagesSchemaType = z.infer<typeof FormAddImageSchema>
+export type FormAddImagesSchemaType = z.infer<typeof FormAddImageSchema>
 
 export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
   const [imageUrl, setImageUrl] = useState('')
   const [localImageUrl, setLocalImageUrl] = useState('')
-  const toast = useToast()
 
+  const toast = useToast()
   const queryClient = useQueryClient()
-  const mutation = useMutation(
-    // TODO MUTATION API POST REQUEST,
+
+  const onError = (): void => {
+    toast({
+      title: 'Erro ao enviar imagem',
+      description: 'Ocorreu um erro ao enviar a sua imagem',
+      status: 'error',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
+
+  const onSuccess = (): void => {
+    toast({
+      title: 'Imagem enviada',
+      description: 'Sua imagem foi enviada com sucesso',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
+
+    queryClient.invalidateQueries('images')
+  }
+
+  const { mutate: post, isLoading } = useMutation(
     {
-      // TODO ONSUCCESS MUTATION
+      mutationKey: 'post-images',
+      mutationFn: postImage,
+      onError,
+      onSuccess,
+      onSettled: () => {
+        setImageUrl('')
+        setLocalImageUrl('')
+        closeModal()
+        reset()
+      }
     },
   )
 
@@ -60,21 +91,15 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
     resolver: zodResolver(FormAddImageSchema)
   })
 
-  const onSubmit = async (data: Record<string, unknown>): Promise<void> => {
-    try {
-      // TODO SHOW ERROR TOAST IF IMAGE URL DOES NOT EXISTS
-      // TODO EXECUTE ASYNC MUTATION
-      // TODO SHOW SUCCESS TOAST
-    } catch {
-      // TODO SHOW ERROR TOAST IF SUBMIT FAILED
-    } finally {
-      // TODO CLEAN FORM, STATES AND CLOSE MODAL
-    }
-  }
+  const onSubmit = async (data: FormAddImagesSchemaType): Promise<void> => {
+    if (!imageUrl) return onError()
 
-  useEffect(() => {
-    console.log('errors', errors)
-  }, [errors])
+    post({
+      description: data.description,
+      title: data.title,
+      url: imageUrl
+    })
+  }
 
   return (
     <Box as="form" width="100%" onSubmit={handleSubmit(onSubmit)}>
@@ -92,12 +117,9 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
               name="image"
               error={errors.image ? { type: 'validate', ...errors.image } : undefined}
               onChange={(image) => onChange(image)}
-            // TODO SEND IMAGE ERRORS
-            // TODO REGISTER IMAGE INPUT WITH VALIDATIONS
             />
           )}
         />
-
 
         <TextInput
           placeholder="Título da imagem..."
@@ -114,8 +136,8 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
 
       <Button
         my={6}
-        isLoading={formState.isSubmitting}
-        isDisabled={formState.isSubmitting}
+        isLoading={formState.isSubmitting || isLoading}
+        isDisabled={formState.isSubmitting || isLoading}
         type="submit"
         w="100%"
         py={6}
