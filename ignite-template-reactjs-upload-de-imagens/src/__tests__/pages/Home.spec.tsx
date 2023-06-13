@@ -70,7 +70,7 @@ describe('Home page', () => {
   })
 
   it('should be able to render loading', async () => {
-    apiMock.onGet('/api/images').reply(200)
+    apiMock.onGet('/images').reply(200)
 
     render(<Home />, { wrapper })
 
@@ -86,7 +86,7 @@ describe('Home page', () => {
       value: mockedConsoleError,
     })
 
-    apiMock.onGet('/api/images').reply(400)
+    apiMock.onGet('/images').reply(400)
     queryClient.setQueryDefaults('images', { retry: 0 })
 
     render(<Home />, { wrapper })
@@ -100,7 +100,7 @@ describe('Home page', () => {
   })
 
   it('should be able to render images list', async () => {
-    apiMock.onGet('/api/images').reply(200, {
+    apiMock.onGet('/images').reply(200, {
       after: null,
       data: [
         {
@@ -132,7 +132,7 @@ describe('Home page', () => {
   })
 
   it('should be able to view an image', async () => {
-    apiMock.onGet('/api/images').reply(200, {
+    apiMock.onGet('/images').reply(200, {
       after: null,
       data: [
         {
@@ -162,7 +162,7 @@ describe('Home page', () => {
   })
 
   it('should be able to load more images', async () => {
-    apiMock.onGet('/api/images').replyOnce(200, {
+    apiMock.onGet('/images').replyOnce(200, {
       after: 'next-cursor',
       data: [
         {
@@ -181,7 +181,7 @@ describe('Home page', () => {
         },
       ],
     })
-    apiMock.onGet('/api/images').replyOnce(200, {
+    apiMock.onGet('/images').replyOnce(200, {
       after: null,
       data: [
         {
@@ -225,7 +225,7 @@ describe('Home page', () => {
   })
 
   it('should be able to add a new image', async () => {
-    apiMock.onGet('/api/images').replyOnce(200, {
+    apiMock.onGet('/images').replyOnce(200, {
       after: 'next-cursor',
       data: [
         {
@@ -244,7 +244,7 @@ describe('Home page', () => {
         },
       ],
     })
-    apiMock.onGet('/api/images').replyOnce(200, {
+    apiMock.onGet('/images').replyOnce(200, {
       after: null,
       data: [
         {
@@ -323,8 +323,8 @@ describe('Home page', () => {
 
     const submitButton = screen.getByRole('button', { name: 'Enviar' })
 
-    apiMock.onPost('/api/images').replyOnce(200)
-    apiMock.onGet('/api/images').replyOnce(200, {
+    apiMock.onPost('/images').replyOnce(200)
+    apiMock.onGet('/images').replyOnce(200, {
       after: 'next-cursor',
       data: [
         {
@@ -343,7 +343,7 @@ describe('Home page', () => {
         },
       ],
     })
-    apiMock.onGet('/api/images').replyOnce(200, {
+    apiMock.onGet('/images').replyOnce(200, {
       after: null,
       data: [
         {

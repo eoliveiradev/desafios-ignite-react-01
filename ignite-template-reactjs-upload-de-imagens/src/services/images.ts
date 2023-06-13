@@ -7,7 +7,6 @@ interface IPostImageData {
   url: string;
 }
 
-
 export const postImage = async (data: IPostImageData) => {
   return api.post('/images', data)
     .then(response => response.data)
