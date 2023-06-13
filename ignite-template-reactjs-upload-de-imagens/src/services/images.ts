@@ -1,4 +1,5 @@
 import { IImage } from "../@types/interfaces";
+import { handleResponse } from "../utils/requests";
 import { api } from "./api";
 
 interface IPostImageData {
@@ -9,7 +10,7 @@ interface IPostImageData {
 
 export const postImage = async (data: IPostImageData) => {
   return api.post('/images', data)
-    .then(response => response.data)
+    .then(handleResponse([201]))
 }
 
 interface IGetImageArgs {
@@ -23,5 +24,5 @@ interface IGetImageResponse {
 
 export const getImage = async (args: IGetImageArgs): Promise<IGetImageResponse> => {
   return api.get('/images', { params: args })
-    .then(response => response.data)
+    .then(handleResponse([200]))
 }
