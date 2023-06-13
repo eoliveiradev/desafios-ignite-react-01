@@ -5,6 +5,7 @@ export function Loading(): JSX.Element {
     <Flex
       justifyContent="center"
       alignItems="center"
+      w="100%"
       h="100vh"
       flexDir="column"
     >
