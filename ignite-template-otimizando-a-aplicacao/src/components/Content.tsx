@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { MovieCard } from "./MovieCard";
 
 interface ContentProps {
@@ -36,3 +37,5 @@ export function Content({ selectedGenre, movies }: ContentProps) {
     </div>
   )
 }
+
+export const MemoizedContent = memo(Content);

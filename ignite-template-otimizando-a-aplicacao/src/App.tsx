@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { SideBar } from './components/SideBar';
+import { MemoizedSideBar, SideBar } from './components/SideBar';
 import { Content } from './components/Content';
 
 import { api } from './services/api';
@@ -57,7 +57,7 @@ export function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <SideBar
+      <MemoizedSideBar
         genres={genres}
         selectedGenreId={selectedGenreId}
         buttonClickCallback={handleClickButton}

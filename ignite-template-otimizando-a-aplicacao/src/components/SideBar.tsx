@@ -1,4 +1,5 @@
-import { Button } from "./Button";
+import { memo } from "react";
+import { Button, MemoizedButton } from "./Button";
 
 interface SideBarProps {
   genres: Array<{
@@ -21,7 +22,7 @@ export function SideBar({
 
       <div className="buttons-container">
         {genres.map(genre => (
-          <Button
+          <MemoizedButton
             key={String(genre.id)}
             title={genre.title}
             iconName={genre.name}
@@ -34,3 +35,7 @@ export function SideBar({
     </nav>
   )
 }
+
+export const MemoizedSideBar = memo(SideBar, (prevProps, nextProps) => {
+  return Object.is(prevProps.selectedGenreId, nextProps.selectedGenreId) && Object.is(prevProps.genres, nextProps.genres);
+})
