@@ -1,7 +1,12 @@
+import Link from 'next/dist/client/link';
 import styles from './header.module.scss';
 
 export const Header = (): JSX.Element => (
   <header className={styles.container}>
-    <img src="/Logo.svg" alt="" />
+    <Link href="/">
+      <a>
+        <img src="/Logo.svg" alt="" />
+      </a>
+    </Link>
   </header>
 );
